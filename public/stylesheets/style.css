@@ -1,0 +1,43 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #E8F1F2;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.navbar-form
+  .form-group {
+    margin-left: 10px;
+  }
+
+.navbar-form button {
+  margin-left: 10px;
+}
+
+.navbar {
+  background-color: #13293D;
+  border-color: #030033;
+}
+
+.add-pc {
+  background-color: #247BA0;
+  padding: 2%;
+  border-radius: 1%;
+}
+
+.title {
+  color: #E8F1F2
+}
+
+.add-pc .form-group input{
+  margin-bottom: 5%;
+}
+
+.add-pc-buttons {
+  margin-left: 10px;
+}
+
+.thumbnail img {  height:150px; width: 150px }

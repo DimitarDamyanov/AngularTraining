@@ -1,0 +1,17 @@
+//Created by D on 11.2.2016 ã..
+
+.navbar-right(ng-controller="NavLoginController")
+   form.navbar-form
+         div(ng-hide="identity.isAuthenticated()")
+               .form-group
+                     input.form-control(placeholder='Username', ng-model="username")
+               .form-group
+                     input.form-control(type="password", placeholder='Password', ng-model="password")
+               button.form-control.btn.btn-default(ng-click="signin(username, password)") Sign In
+         div(ng-show="identity.isAuthenticated()")
+               span(uib-dropdown on-toggle="toggled(open)")
+                     a.btn.btn-success#simple-dropdown(uib-dropdown-toggle)
+                           | {{identity.currentUser.username}}
+                     ul(uib-dropdown-menu aria-labelledby="simple-dropdown")
+                           li
+                              a(href="", ng-click="signout()") Sign Out

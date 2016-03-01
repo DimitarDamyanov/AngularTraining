@@ -1,0 +1,26 @@
+doctype html
+html(ng-app="myApp")
+  head
+    title= title
+    link(rel='stylesheet', href='/bower_components/angular-bootstrap/ui-bootstrap-csp.css')
+    link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.css')
+    link(rel='stylesheet', href='/bower_components/angular-toastr/dist/angular-toastr.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src = '/bower_components/angular/angular.js')
+    script(src = '/bower_components/angular-resource/angular-resource.js')
+    script(src = '/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js')
+    script(src = '/bower_components/angular-toastr/dist/angular-toastr.tpls.js')
+    script(src = '/javascripts/app.js')
+    script(src = '/javascripts/common/common.services.js')
+    script(src = '/javascripts/common/computerResource.js')
+    script(src = '/javascripts/ComputerService.js')
+    script(src = '/javascripts/account/gpIdentity.js')
+    script(src = '/javascripts/account/gpAuth.js')
+    script(src = '/javascripts/account/gpNavBarLogin.js')
+    script(src = '/javascripts/computer/gpPersonalComputer.js')
+    script(src = '/javascripts/computer/gpAddPCController.js')
+    script(src = '/javascripts/ComputerController.js')
+
+  body
+    include currentUser
+    block content
