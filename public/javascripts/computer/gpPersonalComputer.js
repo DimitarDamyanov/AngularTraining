@@ -3,13 +3,17 @@
  */
 
 myApp.factory('ComputerService', function ($q, $http) {
+    var hardwareTypes = [],
+        parts = {};
+
     var PersonalComputer = {
         props: {
-            processor: '',
-            vga: '',
+            cpu: '',
+            gpu: '',
             powerSupply: '',
             hdd: '',
-            memory: ''
+            memory: '',
+            moba: ''
         },
         reset: function () {
             this.props.processor = '',
@@ -52,14 +56,19 @@ myApp.factory('ComputerService', function ($q, $http) {
         return dfd.promise;
     }
 
+    function saveComputer(computer) {
+        var url = '/pc';
+        $http.post(url, computer).then(function () {
+            console.log('computer saved');
+        });
 
-    var hardwareTypes = [];
-    var parts = {};
+    }
 
     return {
         PersonalComputer: PersonalComputer,
         retrieveHardwareTypes: retrieveHardwareTypes,
-        getHardwareTypes: getHardwareTypes
+        getHardwareTypes: getHardwareTypes,
+        savePC: saveComputer
     }
 
 });

@@ -17,13 +17,28 @@ var AddPCController = function ($scope, $http, ComputerService) {
                 }
             });
         }
-    }
+    };
 
     ComputerService.retrieveHardwareTypes().then(function (success) {
         $scope.hardwareTypes = ComputerService.getHardwareTypes();
         $scope.loadPartsByType($scope.hardwareTypes);
     });
 
+    $scope.savePC = function (pc) {
+        var parts = [];
+        angular.forEach(pc.props, function (value, key) {
+            parts.push(value);
+        });
+
+        var pc = {
+            parts: parts,
+            username: 'admin',
+            name: 'Test configuration'
+        }
+
+        ComputerService.savePC(pc);
+
+    };
 
     $scope.componentPreview = {
         img: {
@@ -33,7 +48,7 @@ var AddPCController = function ($scope, $http, ComputerService) {
                 this.url = url;
             }
         }
-    }
+    };
 
     $scope.showImg = function (src) {
         $scope.img.src = src;
