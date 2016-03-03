@@ -1,17 +1,17 @@
-
-form.form-horizontal.add-pc(ng-controller="AddPCController")
-    .row
-        .col.md-3.col-md-offset-1
-            h2.title Add your configuration
-            .form-group.col-md-6
-                div(ng-repeat="type in hardwareTypes")
-                    input.form-control(type="text" placeholder="{{type.name}}" ng-model="pc.props[type.id]" uib-typeahead="item as item.name for item in parts[type.id]" typeahead-on-select="componentPreview.img.setUrl($item.img)")
-        .col-md-offset-1.col-md-4
-            .form-group
-                a.thumbnail(href="{{componentPreview.img.url}}")
-                    img(ng-src="{{componentPreview.img.url}}" alt="123123")
-    .row
-        .col-md-offset-2
-            .form-group
-                button.btn.btn-default.add-pc-buttons(ng-click="savePC(pc)") Add
-                button.btn.btn-default.add-pc-buttons(ng-click="reset(form)") Reset
+.col-md-5
+    form.form-horizontal.add-pc(ng-controller="AddPCController")
+        .row
+            .col.md-3.col-md-offset-1
+                h2.title Add your configuration
+                .form-group.col-md-6
+                    div(ng-repeat="type in hardwareTypes")
+                        input.form-control(type="text" placeholder="{{type.name}}" ng-model="pc.props[type.id]" uib-typeahead="item as item.name for item in parts[type.id]" typeahead-on-select="componentPreview.img.setUrl($item.img)")
+            .col-md-offset-1.col-md-4
+                .form-group
+                    a.thumbnail(href="{{componentPreview.img.url}}")
+                        img(ng-src="{{componentPreview.img.url}}" alt="123123")
+        .row
+            .col-md-offset-2
+                .form-group
+                    button.btn.btn-default.add-pc-buttons(ng-click="savePC(pc)") Add
+                    button.btn.btn-default.add-pc-buttons(ng-click="reset(form)") Reset

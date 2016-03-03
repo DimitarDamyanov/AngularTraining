@@ -1,0 +1,17 @@
+//
+   Created by D on 3.3.2016 ã..
+.col-md-6(ng-controller="PCConfigCtrl")
+    .panel.panel-default(ng-controller="PCConfigCtrl")
+        .panel-heading.panel-heading-custom
+            h4 {{pc.name}}
+        .panel-body
+            uib-accordion(close-others="oneAtATime")
+                uib-accordion-group(ng-repeat="part in pc.parts" heading="{{part.name}}")
+                    .row
+                        .col-md-2
+                            p Description
+                                .col-md-offset-4.col-md-6
+                                    a.thumbnail(href="{{part.img}}")
+                                        img(ng-src="{{part.img}}" alt="123123")
+
+

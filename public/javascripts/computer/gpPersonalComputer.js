@@ -2,7 +2,7 @@
  * Created by D on 14.2.2016 ã..
  */
 
-myApp.factory('ComputerService', function ($q, $http) {
+myApp.factory('ComputerService', function ($q, $http, gpIdentity) {
     var hardwareTypes = [],
         parts = {};
 
@@ -56,8 +56,17 @@ myApp.factory('ComputerService', function ($q, $http) {
         return dfd.promise;
     }
 
-    function saveComputer(computer) {
+    function saveComputer(parts) {
         var url = '/pc';
+        var computer = {
+            parts: parts
+        };
+        if (gpIdentity.isAuthenticated()) {
+            computer.username = gpIdentity.currentUser.username;
+        } else {
+            computer.username = 'anonymous';
+        }
+        computer.name = 'Anonymous configuration';
         $http.post(url, computer).then(function () {
             console.log('computer saved');
         });

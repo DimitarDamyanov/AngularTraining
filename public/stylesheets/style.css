@@ -41,3 +41,17 @@ a {
 }
 
 .thumbnail img {  height:150px; width: 150px }
+
+.toast-top-right {
+  top: 60px
+}
+
+/*
+.panel-default > .panel-heading-custom {
+  background: #13293D;
+}
+
+h5 {
+  color: white;
+}
+*/

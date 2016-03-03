@@ -2,13 +2,9 @@
  * Created by D on 7.2.2016 ã..
  */
 (function(){
-    var computerService = function($http, $log){
+    var computerService = function ($http, $log, gpIdentity) {
 
         var getAllComputers = function(){
-            //productResource.query(function(data){
-            //    $log.info("Data: " + data);
-            //    return data.$promise;
-            //});
             return $http.get('/pc').then(function(response){
                 $log.info(response.data);
                 return response.data;

@@ -1,18 +1,22 @@
 /**
  * Created by D on 31.1.2016 ã..
  */
-var myApp = angular.module('myApp',['common.services','ui.bootstrap','toastr']);
 
-//myApp.config(function($routeProvider, $locationProvider){
-//    $locationProvider.html5Mode(true);
-//    $routeProvider.when('/partials/main-nav')
-//});
+var myApp = angular.module('myApp', ['common.services', 'ui.bootstrap', 'toastr', 'ngRoute', 'ngAnimate']);
 
-
-myApp.controller('MainCtrl', ['$scope','$http', function($scope, $http) {
-    $scope.message = 'Hola!';
-    $http.get('/user').then(function(reseponse){
-        $scope.user = reseponse.data;
+(function () {
+    myApp.config(function ($routeProvider, $locationProvider) {
+        $routeProvider
+            .when('/add', {
+                templateUrl: '/partials/computer/add-computer-form',
+                controller: 'AddPCController'
+            });
+        $routeProvider
+            .when('/my-configurations', {
+                templateUrl: '/partials/computer/pc-config',
+                controller: 'PCConfigCtrl'
+            });
     });
+}());
 
-}]);
+

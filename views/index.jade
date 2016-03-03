@@ -1,12 +1,7 @@
 extends layout
 
 block content
-  //#main-controller(ng-controller='MainCtrl')
-  //  h1 Hello, {{user.name}}
-  //  h1= title
-  //  p Welcome to #{title}
   div(ng-include="'/partials/main/main-nav'")
-  #save-pc-controller(ng-controller="ComputerController")
     .row
-      .col-md-5
-        div(ng-include="'/partials/computer/add-computer-form'")
+        div(ng-view)
+

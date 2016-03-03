@@ -3,7 +3,6 @@
  */
 
 var AddPCController = function ($scope, $http, ComputerService) {
-    console.log(ComputerService);
     $scope.pc = ComputerService.PersonalComputer;
     $scope.parts = {};
 
@@ -29,15 +28,7 @@ var AddPCController = function ($scope, $http, ComputerService) {
         angular.forEach(pc.props, function (value, key) {
             parts.push(value);
         });
-
-        var pc = {
-            parts: parts,
-            username: 'admin',
-            name: 'Test configuration'
-        }
-
-        ComputerService.savePC(pc);
-
+        ComputerService.savePC(parts);
     };
 
     $scope.componentPreview = {
