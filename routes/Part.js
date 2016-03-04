@@ -13,6 +13,15 @@ var routes = function (Part) {
         });
     });
 
+    function getTop5PartsByType(type) {
+        Part.find({type: type}, function (err, types) {
+            err && console.log(err);
+
+            //res.json(types);
+        });
+    }
+
+
     return router;
 };
 

@@ -8,8 +8,6 @@ var routes = function (pc) {
 
     router
         .post('/', function (req, res) {
-            console.log(req.body);
-            // console.log(pc);
             var newPc = new pc(req.body);
             newPc.save();
             res.send('Pc saved!');
@@ -24,9 +22,17 @@ var routes = function (pc) {
             pc.findOne({_id: req.params.id}, function (err, pcs) {
                 res.json(pcs);
             }).populate('parts').populate('type');
+        })
+        .get('/user/:username/configs', function (req, res, next) {
+            pc.find({username: req.params.username}, function (err, pcs) {
+                res.json(pcs);
+            }).populate('parts');
+        })
+        .get('/user/:username/configs/count', function (req, res, next) {
+            pc.count({username: req.params.username}, function (err, result) {
+                res.json(result);
+            });
         });
-
-
     return router;
 };
 

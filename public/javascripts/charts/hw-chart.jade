@@ -1,0 +1,27 @@
+//Created by D on 4.3.2016 ã..
+div(ng-controller="HWChartCtrl")
+    .row
+        .col-md-2
+            .panel.panel-defaul
+                .panel-heading
+                    | Charts Menu
+                .panel-body
+                    ul.list-group
+                        li.list-group-item(ng-repeat="part in parts")
+                            input(type="checkbox" ng-model='id')
+                            | {{part.name}}
+        .col-md-4(ng-show="cpu")
+            .panel.panel-default
+                .panel-heading
+                    p.panel-title Most used cpu's
+                .panel-body
+                    canvas#pie.chart.chart-pie(chart-data="data" chart-labels="labels")
+
+        .col-md-4(ng-show="gpu")
+            .panel.panel-default
+                .panel-heading
+                    p.panel-title  Most used vga's
+                .panel-body
+                    canvas#pie.chart.chart-pie(chart-data="data" chart-labels="labels")
+
+

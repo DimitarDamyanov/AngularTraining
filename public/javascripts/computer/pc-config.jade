@@ -1,17 +1,29 @@
 //
    Created by D on 3.3.2016 ã..
 .col-md-6(ng-controller="PCConfigCtrl")
-    .panel.panel-default(ng-controller="PCConfigCtrl")
+    .panel.panel-default(ng-repeat="pc in configs")
         .panel-heading.panel-heading-custom
-            h4 {{pc.name}}
+            h4.panel-title {{pc.name}}
         .panel-body
             uib-accordion(close-others="oneAtATime")
                 uib-accordion-group(ng-repeat="part in pc.parts" heading="{{part.name}}")
                     .row
                         .col-md-2
                             p Description
-                                .col-md-offset-4.col-md-6
-                                    a.thumbnail(href="{{part.img}}")
-                                        img(ng-src="{{part.img}}" alt="123123")
+                        .col-md-offset-4.col-md-5
+                            a.thumbnail(href="{{part.img}}")
+                                img(ng-src="{{part.img}}" alt="123123")
+            small.pull-right Added on {{formatDate(pc.time)}}
+            //.row
+                .col-md-1
+                    a.btn.btn-info
+                        span.glyphicon.glyphicon-edit
+                        |  Edit
+                .col-md-offset-1.col-md-1
+                    a.btn.btn-info
+                        span.glyphicon.glyphicon-remove
+                        |  Remove
+
+
 
 
