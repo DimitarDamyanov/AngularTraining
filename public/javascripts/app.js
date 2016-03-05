@@ -2,7 +2,7 @@
  * Created by D on 31.1.2016 ã..
  */
 
-var myApp = angular.module('myApp', ['common.services', 'ui.bootstrap', 'toastr', 'ngRoute', 'ngAnimate', 'chart.js']);
+var myApp = angular.module('myApp', ['common.services', 'ui.bootstrap', 'toastr', 'ngRoute', 'ngAnimate', 'chart.js', 'underscore']);
 
 (function () {
     myApp.config(function ($routeProvider, $locationProvider) {

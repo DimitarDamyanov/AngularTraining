@@ -15,6 +15,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var pcModel = require('./models/pc');
 var pcRoute = require('./routes/pc')(pcModel);
+var charsRoute = require('./routes/chars')(pcModel);
 var authentication = require('./routes/auth')(User);
 var partTypesRoute = require('./routes/PartType')(PartTypes, Part);
 var partRoute = require('./routes/Part')(Part);
@@ -29,7 +30,7 @@ app.use('/', authentication);
 app.use('/user', users);
 app.use('/pc', pcRoute);
 app.use('/hardware', partTypesRoute);
-//app.use('/hardware', partRoute);
+app.use('/chart', charsRoute);
 
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {

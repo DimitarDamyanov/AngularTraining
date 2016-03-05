@@ -15,7 +15,7 @@ var routes = function (pc) {
         .get('/', function (req, res, next) {
             pc.find({}, function (err, pcs) {
                 res.json(pcs);
-            });
+            }).populate('parts');
         })
         .get('/:id', function (req, res, next) {
             console.log('here');
@@ -33,6 +33,8 @@ var routes = function (pc) {
                 res.json(result);
             });
         });
+
+
     return router;
 };
 
