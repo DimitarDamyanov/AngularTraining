@@ -1,27 +1,22 @@
 //Created by D on 4.3.2016 ã..
 div(ng-controller="HWChartCtrl")
     .row
-        .col-md-2
-            .panel.panel-defaul
-                .panel-heading
-                    | Charts Menu
-                .panel-body
-                    ul.list-group
-                        li.list-group-item(ng-repeat="part in parts")
-                            input(type="checkbox" ng-model='id')
-                            | {{part.name}}
-        .col-md-4(ng-show="cpu")
+        .col-md-3
             .panel.panel-default
                 .panel-heading
-                    p.panel-title Most used cpu's
+                    p.panel-title Charts Menu
                 .panel-body
-                    canvas#pie.chart.chart-pie(chart-data="data" chart-labels="labels")
-
-        .col-md-4(ng-show="gpu")
-            .panel.panel-default
-                .panel-heading
-                    p.panel-title  Most used vga's
-                .panel-body
-                    canvas#pie.chart.chart-pie(chart-data="data" chart-labels="labels")
-
-
+                    .panel
+                        ul.list-group
+                            li.list-group-item(ng-repeat="part in parts")
+                                .checkbox
+                                    label
+                                        input(type="checkbox" ng-click="loadChartInfoByType(part._id, part.id)" id="{{part.id}}" ng-model="show[part.id]")
+                                        | {{part.name}}
+        .col-md-9
+            .col-md-6(ng-repeat="part in parts" ng-show="show[part.id]")
+                .panel.panel-default
+                    .panel-heading
+                        p.panel-title {{part.name}}
+                    .panel-body
+                        canvas#pie.chart.chart-pie(chart-data="chart[part.id].data" chart-labels="chart[part.id].labels")
