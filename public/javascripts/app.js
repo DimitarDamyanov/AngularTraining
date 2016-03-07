@@ -8,7 +8,7 @@ var myApp = angular.module('myApp', ['common.services', 'ui.bootstrap', 'toastr'
     myApp.config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/add', {
-                templateUrl: '/partials/computer/add-computer-form',
+                templateUrl: '/partials/computer/add/add-computer-form',
                 controller: 'AddPCController'
             });
         $routeProvider
@@ -16,6 +16,10 @@ var myApp = angular.module('myApp', ['common.services', 'ui.bootstrap', 'toastr'
                 templateUrl: '/partials/computer/pc-config',
                 controller: 'PCConfigCtrl'
             });
+        $routeProvider.when('/edit-config', {
+            templateUrl: '/partials/computer/edit/edit-config',
+            controller: 'PCEditCtrl'
+        });
         $routeProvider
             .when('/chart', {
                 templateUrl: '/partials/charts/hw-chart',

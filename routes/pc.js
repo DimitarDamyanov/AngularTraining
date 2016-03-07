@@ -21,12 +21,17 @@ var routes = function (pc) {
             console.log('here');
             pc.findOne({_id: req.params.id}, function (err, pcs) {
                 res.json(pcs);
-            }).populate('parts').populate('type');
+            }).populate('parts');
         })
         .get('/user/:username/configs', function (req, res, next) {
             pc.find({username: req.params.username}, function (err, pcs) {
                 res.json(pcs);
             }).populate('parts');
+        })
+        .get('/user/:username/all-configs', function (req, res, next) {
+            pc.find({username: req.params.username}, function (err, pcs) {
+                res.json(pcs);
+            }).select('name').select('_id');
         })
         .get('/user/:username/configs/count', function (req, res, next) {
             pc.count({username: req.params.username}, function (err, result) {

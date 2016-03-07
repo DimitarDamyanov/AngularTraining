@@ -1,8 +1,4 @@
 /**
- * Created by D on 6.3.2016 ã..
- */
-
-/**
  * Created by D on 14.2.2016 ã..
  */
 

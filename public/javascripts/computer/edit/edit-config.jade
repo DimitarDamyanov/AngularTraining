@@ -1,0 +1,10 @@
+//Created by D on 6.3.2016 ã..
+
+.row
+    .col-md-5
+        .panel.panel-default(ng-controller="PCEditCtrl")
+            .panel-heading
+                h4.panel-title Edit configuration
+            .panel-body
+                select.form-control(ng-change="change()" ng-model="select")
+                    option(ng-repeat = "pc in pcConfigs", value="{{pc._id}}") {{pc.name}}
