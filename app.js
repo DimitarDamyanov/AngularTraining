@@ -1,6 +1,18 @@
 var express = require('express'),
     passport = require('passport'),
     mongoose = require('mongoose'),
+    multer = require('multer'),
+    upload = multer({
+        dest: 'public/images/configs',
+        fileFilter: function (req, file, cb) {
+            console.log(file);
+            if (file.mimetype !== 'image/jpg' && file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/png') {
+                cb(null, false);
+            } else {
+                cb(null, true);
+            }
+        }
+    }),
     LocalStrategy = require('passport-local').Strategy;
 
 app = express();
@@ -19,6 +31,7 @@ var charsRoute = require('./routes/chars')(pcModel);
 var authentication = require('./routes/auth')(User);
 var partTypesRoute = require('./routes/PartType')(PartTypes, Part);
 var partRoute = require('./routes/Part')(Part);
+var uploadRoute = require('./routes/upload')(upload);
 
 app.get('/partials/*', function(req, res){
   console.log(req.params[0]);
@@ -31,6 +44,7 @@ app.use('/user', users);
 app.use('/pc', pcRoute);
 app.use('/hardware', partTypesRoute);
 app.use('/chart', charsRoute);
+app.use('/upload', uploadRoute);
 
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {

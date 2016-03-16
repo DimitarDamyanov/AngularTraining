@@ -18,4 +18,4 @@ var ImageUploadCtrl = function ($scope, FileUploader) {
 };
 
 
-myApp.controller('ImageUploadCtrl', ['$scope', 'FileUploader'], ImageUploadCtrl);
+myApp.controller('ImageUploadCtrl', ['$scope', 'FileUploader', ImageUploadCtrl]);

@@ -5,5 +5,5 @@ div(ng-controller="ImageUploadCtrl" nv-file-drop="" uploader="uploader")
         .well.my-drop-zone(nv-file-over="" uploader="uploader")
             | Drop zone
 
-
-
+        button.btn.btn-success(type="button" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length")
+            span.glyphicon.glyphicon-upload Upload
