@@ -66,7 +66,7 @@ myApp.factory('ComputerService', function ($q, $http, gpIdentity) {
         } else {
             computer.username = 'anonymous';
         }
-        computer.name = 'Anonymous configuration';
+        computer.name = '56d7569910146a3c0812a32c';
         $http.post(url, computer).then(function () {
             console.log('computer saved');
         });

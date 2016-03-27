@@ -8,6 +8,6 @@
             .panel-body
                 select.form-control(ng-change="change()" ng-model="select")
                     option(ng-repeat = "pc in pcConfigs", value="{{pc._id}}") {{pc.name}}
-
-        div(ng-include="'/partials/upload/upload-form'")
+.row
+    .col-md-5(ng-include="'/partials/upload/upload-form'")
 

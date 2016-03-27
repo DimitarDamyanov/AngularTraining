@@ -17,6 +17,7 @@ var PCConfigCtrl = function ($scope, $http, gpIdentity) {
     };
 
     $http.get(['pc/user/', user, '/configs'].join('')).then(function (response) {
+        console.log(response.data);
         $scope.configs = response.data;
     });
 

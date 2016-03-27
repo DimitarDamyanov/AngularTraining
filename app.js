@@ -2,8 +2,21 @@ var express = require('express'),
     passport = require('passport'),
     mongoose = require('mongoose'),
     multer = require('multer'),
+    crypto = require('crypto'),
+    mime = require('mime'),
+    storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, './public/images/configs')
+        },
+        filename: function (req, file, cb) {
+            crypto.pseudoRandomBytes(16, function (err, raw) {
+                cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+            });
+        }
+    });
     upload = multer({
-        dest: 'public/images/configs',
+        //dest: 'public/images/configs',
+        storage: storage,
         fileFilter: function (req, file, cb) {
             console.log(file);
             if (file.mimetype !== 'image/jpg' && file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/png') {
@@ -26,15 +39,16 @@ var User = require('./models/user');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var pcModel = require('./models/pc');
+var imgModel = require('./models/image');
 var pcRoute = require('./routes/pc')(pcModel);
 var charsRoute = require('./routes/chars')(pcModel);
 var authentication = require('./routes/auth')(User);
 var partTypesRoute = require('./routes/PartType')(PartTypes, Part);
 var partRoute = require('./routes/Part')(Part);
-var uploadRoute = require('./routes/upload')(upload);
+var uploadRoute = require('./routes/upload')(upload, pcModel, imgModel);
+
 
 app.get('/partials/*', function(req, res){
-  console.log(req.params[0]);
   res.render(req.params[0]);
 });
 
@@ -45,6 +59,7 @@ app.use('/pc', pcRoute);
 app.use('/hardware', partTypesRoute);
 app.use('/chart', charsRoute);
 app.use('/upload', uploadRoute);
+
 
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {

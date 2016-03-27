@@ -18,7 +18,6 @@ var Configuration = function(app, directory){
     app.set('view engine', 'jade');
     app.use(express.static(directory + '/public'));
     app.use('/bower_components',  express.static(directory + '/bower_components'));
-
     // uncomment after placing your favicon in /public
     //app.use(favicon(path.join(directory, 'public', 'favicon.ico')));
     app.use(logger('dev'));

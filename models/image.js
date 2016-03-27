@@ -6,7 +6,8 @@ var mongoose = require('mongoose'),
 
 var image = new Schema({
     name: {type: String},
-    title: {type: String}
+    title: {type: String},
+    mimetype: {type: String}
 });
 
 var imageModel = mongoose.model('Image', image);

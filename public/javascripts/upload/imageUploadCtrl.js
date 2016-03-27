@@ -15,6 +15,16 @@ var ImageUploadCtrl = function ($scope, FileUploader) {
         }
     });
 
+    $scope.uploader.onBeforeUploadItem = onBeforeUploadItem;
+
+    function onBeforeUploadItem(item) {
+        item.formData.push({pcId: '56dc79d4bccf7d140de803ce'});
+    }
+
+    uploader.customUploadALl = function () {
+        uploader.uploadAll();
+    }
+
 };
 
 

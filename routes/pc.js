@@ -23,10 +23,15 @@ var routes = function (pc) {
                 res.json(pcs);
             }).populate('parts');
         })
+        .delete('/:id', function (req, res, next) {
+            pc.remove({_id: req.params.id}, function (err) {
+                res.send('pc removed');
+            });
+        })
         .get('/user/:username/configs', function (req, res, next) {
             pc.find({username: req.params.username}, function (err, pcs) {
                 res.json(pcs);
-            }).populate('parts');
+            }).populate('images').populate('parts');
         })
         .get('/user/:username/all-configs', function (req, res, next) {
             pc.find({username: req.params.username}, function (err, pcs) {
