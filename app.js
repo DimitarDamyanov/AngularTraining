@@ -40,13 +40,14 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var pcModel = require('./models/pc');
 var imgModel = require('./models/image');
+var userProfile = require('./models/UserProfile');
 var pcRoute = require('./routes/pc')(pcModel);
 var charsRoute = require('./routes/chars')(pcModel);
 var authentication = require('./routes/auth')(User);
 var partTypesRoute = require('./routes/PartType')(PartTypes, Part);
 var partRoute = require('./routes/Part')(Part);
 var uploadRoute = require('./routes/upload')(upload, pcModel, imgModel);
-
+var userProfileRoute = require('./routes/profile')(userProfile);
 
 app.get('/partials/*', function(req, res){
   res.render(req.params[0]);
@@ -59,6 +60,7 @@ app.use('/pc', pcRoute);
 app.use('/hardware', partTypesRoute);
 app.use('/chart', charsRoute);
 app.use('/upload', uploadRoute);
+app.use('/profile', userProfileRoute);
 
 
 if (app.get('env') === 'development') {

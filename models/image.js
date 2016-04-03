@@ -11,4 +11,17 @@ var image = new Schema({
 });
 
 var imageModel = mongoose.model('Image', image);
+
+imageModel.find({name: 'default-avatar'},function(err, images){
+    console.log(images);
+    if(images && images.length == 0){
+        var image = new imageModel({
+            name: 'default-avatar',
+            title:  'default avatar',
+            mimetype: 'image/png'
+        });
+        image.save();
+    }
+});
+
 module.exports = imageModel;

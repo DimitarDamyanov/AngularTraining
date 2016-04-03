@@ -4,7 +4,8 @@
 var mongoose = require('mongoose'),
     crypto = require('crypto'),
     passport = require('passport'),
-    LocalStrategy = require('passport-local').Strategy;
+    LocalStrategy = require('passport-local').Strategy,
+    Profile = require('./UserProfile');
 
 var userSchema = new mongoose.Schema({
     username: {
@@ -18,7 +19,8 @@ var userSchema = new mongoose.Schema({
     },
     salt: {
         type: String
-    }
+    },
+    profile: {type: mongoose.Schema.Types.ObjectId, ref: 'UserProfile'}
 });
 
 userSchema.methods = {
@@ -28,6 +30,7 @@ userSchema.methods = {
 };
 
 var User = mongoose.model('User', userSchema);
+
 
 User.find({}, function (err, users) {
     if (users.length == 0) {
@@ -43,6 +46,29 @@ User.find({}, function (err, users) {
     }
 });
 
+User.find({username: 'ddamyanov'}, function (err, users) {
+    if (users.length == 0) {
+        var salt = createSalt();
+        var pwd = hashPassword(salt, 'asd123');
+        var profile = new Profile({
+            name: 'Dimitar Damyanov',
+            email: 'ddamqnov@gmail.com',
+            avatar: "570013dd03a3b7a82192ba70"
+        });
+        profile.save();
+
+        var user = {
+            username: 'ddamyanov',
+            hashedPassword: pwd,
+            salt: salt,
+            profile: profile
+        };
+        var newUser = new User(user);
+        newUser.save();
+    }
+});
+
+
 
 passport.use(new LocalStrategy(
     function(username, password, done){
@@ -52,7 +78,7 @@ passport.use(new LocalStrategy(
             } else {
                 return done(null, false)
             }
-        });
+        }).populate('profile');
     }
 ));
 

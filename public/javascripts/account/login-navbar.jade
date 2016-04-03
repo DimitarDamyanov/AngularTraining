@@ -9,13 +9,19 @@
                      input.form-control(type="password", placeholder='Password', ng-model="password")
                button.form-control.btn.btn-default(ng-click="signin(username, password)") Sign In
          div(ng-show="identity.isAuthenticated()")
-               span(uib-dropdown on-toggle="toggled(open)")
-                     a.btn.btn-success#simple-dropdown(uib-dropdown-toggle)
-                           | {{identity.currentUser.username}}
-                     ul(uib-dropdown-menu aria-labelledby="simple-dropdown")
-                           li
-                               a(href="#/add", ng-click="") Add Configuration
-                               a(href="#/my-configurations", ng-click="") My Configurations
-                               a(href="#/charts", ng-click="") Charts
-                               a(href="#/edit-config", ng-click="") Edit Configuration
-                               a(href="", ng-click="signout()") Sign Out
+             .row
+                 .col-md-8
+                     span(uib-dropdown on-toggle="toggled(open)")
+                         a.btn.btn-success#simple-dropdown(uib-dropdown-toggle)
+                             | {{identity.currentUser.username}}
+                         ul(uib-dropdown-menu aria-labelledby="simple-dropdown")
+                             li
+                                 a(href="#/add", ng-click="") Add Configuration
+                                 a(href="#/my-configurations", ng-click="") My Configurations
+                                 a(href="#/charts", ng-click="") Charts
+                                 a(href="#/edit-config", ng-click="") Edit Configuration
+                                 a(href="#/profile", ng-click="") Edit profile
+                                 a(href="", ng-click="signout()") Sign Out
+                 .col-md-4
+                     img(ng-src="/images/avatars/{{identity.currentUser.profile.avatar}}.png")
+

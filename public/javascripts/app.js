@@ -20,6 +20,10 @@ var myApp = angular.module('myApp', ['common.services', 'ui.bootstrap', 'toastr'
             templateUrl: '/partials/computer/edit/edit-config',
             controller: 'PCEditCtrl'
         });
+        $routeProvider.when('/profile', {
+            templateUrl: '/partials/account/profile/profile-edit',
+            controller: 'EditProfileCtrl'
+        });
         $routeProvider
             .when('/chart', {
                 templateUrl: '/partials/charts/hw-chart',
