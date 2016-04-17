@@ -4,28 +4,7 @@ var express = require('express'),
     multer = require('multer'),
     crypto = require('crypto'),
     mime = require('mime'),
-    storage = multer.diskStorage({
-        destination: function (req, file, cb) {
-            cb(null, './public/images/configs')
-        },
-        filename: function (req, file, cb) {
-            crypto.pseudoRandomBytes(16, function (err, raw) {
-                cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
-            });
-        }
-    });
-    upload = multer({
-        //dest: 'public/images/configs',
-        storage: storage,
-        fileFilter: function (req, file, cb) {
-            console.log(file);
-            if (file.mimetype !== 'image/jpg' && file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/png') {
-                cb(null, false);
-            } else {
-                cb(null, true);
-            }
-        }
-    }),
+    multerConf = require('./config/multer.js')(multer, crypto, mime),
     LocalStrategy = require('passport-local').Strategy;
 
 app = express();
@@ -46,8 +25,10 @@ var charsRoute = require('./routes/chars')(pcModel);
 var authentication = require('./routes/auth')(User);
 var partTypesRoute = require('./routes/PartType')(PartTypes, Part);
 var partRoute = require('./routes/Part')(Part);
-var uploadRoute = require('./routes/upload')(upload, pcModel, imgModel);
+var imgUploadRoute = require('./routes/upload/image')(multerConf.pcConfigurationConf(), pcModel, imgModel);
+var avatarUploadRoute = require('./routes/upload/avatar')(multerConf.profileAvatar(), User, userProfile, imgModel);
 var userProfileRoute = require('./routes/profile')(userProfile);
+var avatarRoute = require('./routes/avatar')(imgModel);
 
 app.get('/partials/*', function(req, res){
   res.render(req.params[0]);
@@ -59,8 +40,10 @@ app.use('/user', users);
 app.use('/pc', pcRoute);
 app.use('/hardware', partTypesRoute);
 app.use('/chart', charsRoute);
-app.use('/upload', uploadRoute);
+app.use('/upload', imgUploadRoute);
+app.use('/upload', avatarUploadRoute);
 app.use('/profile', userProfileRoute);
+app.use('/avatar', avatarRoute);
 
 
 if (app.get('env') === 'development') {

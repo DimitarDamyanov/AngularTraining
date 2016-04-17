@@ -2,7 +2,7 @@
  * Created by D on 15.3.2016 ã..
  */
 
-var ImageUploadCtrl = function ($scope, FileUploader) {
+var ImageUploadCtrl = function ($scope, FileUploader, EditPcService) {
     var uploader = $scope.uploader = new FileUploader({
         url: 'upload/configuration/image'
     });
@@ -18,7 +18,8 @@ var ImageUploadCtrl = function ($scope, FileUploader) {
     $scope.uploader.onBeforeUploadItem = onBeforeUploadItem;
 
     function onBeforeUploadItem(item) {
-        item.formData.push({pcId: '56dc79d4bccf7d140de803ce'});
+        var pcId = EditPcService.getConfig()._id;
+        item.formData.push({pcId: pcId});
     }
 
     uploader.customUploadALl = function () {
@@ -28,4 +29,4 @@ var ImageUploadCtrl = function ($scope, FileUploader) {
 };
 
 
-myApp.controller('ImageUploadCtrl', ['$scope', 'FileUploader', ImageUploadCtrl]);
+myApp.controller('ImageUploadCtrl', ['$scope', 'FileUploader', 'EditPcService', ImageUploadCtrl]);

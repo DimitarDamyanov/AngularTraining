@@ -16,20 +16,10 @@
                 .panel.panel-default(ng-if="pc.images && pc.images.length > 0")
                     .panel-body
                         .row
-                            .col-md-4(ng-repeat="img in pc.images")
-                                a.thumbnail(href='/images/configs/{{img.name}}')
-                                    img(ng-src="/images/configs/{{img.name}}")
+                            .col-md-3(ng-repeat="img in pc.images")
+                                a(href='/images/configs/{{img.name}}')
+                                    img.img-responsive.img-rounded(ng-src="/images/configs/md-{{img.name}}")
             small.pull-right Added on {{formatDate(pc.time)}}
-            //.row
-                .col-md-1
-                    a.btn.btn-info
-                        span.glyphicon.glyphicon-edit
-                        |  Edit
-                .col-md-offset-1.col-md-1
-                    a.btn.btn-info
-                        span.glyphicon.glyphicon-remove
-                        |  Remove
-
 
 
 

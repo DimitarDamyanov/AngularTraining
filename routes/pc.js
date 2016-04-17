@@ -9,7 +9,9 @@ var routes = function (pc) {
     router
         .post('/', function (req, res) {
             var newPc = new pc(req.body);
-            newPc.save();
+            newPc.save(function (err) {
+                console.log(err);
+            });
             res.send('Pc saved!');
         })
         .get('/', function (req, res, next) {

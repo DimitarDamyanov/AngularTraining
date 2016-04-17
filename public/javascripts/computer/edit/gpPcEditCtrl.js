@@ -1,9 +1,12 @@
 /**
  * Created by D on 7.3.2016 ã..
  */
-var PCEditCtrl = function ($scope, $http, gpIdentity) {
+var PCEditCtrl = function ($scope, $http, gpIdentity, EditPcService) {
 
     $scope.change = function () {
+        EditPcService.setConfig({
+            _id: $scope.select
+        });
         console.log($scope.select);
     };
 
@@ -13,4 +16,4 @@ var PCEditCtrl = function ($scope, $http, gpIdentity) {
     });
 };
 
-myApp.controller('PCEditCtrl', ['$scope', '$http', 'gpIdentity', PCEditCtrl]);
+myApp.controller('PCEditCtrl', ['$scope', '$http', 'gpIdentity', 'EditPcService', PCEditCtrl]);

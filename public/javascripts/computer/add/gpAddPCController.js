@@ -26,7 +26,7 @@ var AddPCController = function ($scope, $http, ComputerService) {
     $scope.savePC = function (pc) {
         var parts = [];
         angular.forEach(pc.props, function (value, key) {
-            parts.push(value);
+            parts.push(value._id);
         });
         ComputerService.savePC(parts);
     };
